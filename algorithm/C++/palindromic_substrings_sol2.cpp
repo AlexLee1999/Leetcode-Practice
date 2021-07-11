@@ -10,8 +10,8 @@ public:
     int countSubstrings(string s) {
         int count=0;
         for (int i=0; i<s.size(); ++i){
-            count_sub(i, i, count, s);
-            count_sub(i, i+1, count, s);
+            count_sub(i, i, count, s);//for odd cases;
+            count_sub(i, i+1, count, s);//for even cases;
         }
         return count;
     }
