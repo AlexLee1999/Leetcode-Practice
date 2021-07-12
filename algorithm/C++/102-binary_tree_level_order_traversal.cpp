@@ -25,8 +25,6 @@ public:
             for (int i=0; i<n; ++i){
                 tmp = que.front();
                 res_tmp.push_back(tmp->val);
-
-
                 if(tmp->left != nullptr){
                     que.push(tmp->left);
                 }

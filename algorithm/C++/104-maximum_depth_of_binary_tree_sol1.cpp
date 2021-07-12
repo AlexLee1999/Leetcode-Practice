@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    void check_tree(TreeNode* node, int depth, int& max_depth){
+    void checkTree(TreeNode* node, int depth, int& max_depth){
         if(node == nullptr){
             return;
         }
@@ -23,7 +23,7 @@ public:
     int maxDepth(TreeNode* root) {
         int depth = 1;
         int max_depth = 0;
-        check_tree(root, depth, max_depth);
+        checkTree(root, depth, max_depth);
         return max_depth;
     }
 };

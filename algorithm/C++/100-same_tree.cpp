@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    bool is_true(TreeNode* a, TreeNode* b){
+    bool isTrue(TreeNode* a, TreeNode* b){
         if(a == nullptr && b==nullptr){
             return true;
         }
@@ -21,6 +21,6 @@ public:
         return is_true(a->left, b->left)&&is_true(a->right, b->right);
     }
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        return is_true(p, q);
+        return isTrue(p, q);
     }
 };
