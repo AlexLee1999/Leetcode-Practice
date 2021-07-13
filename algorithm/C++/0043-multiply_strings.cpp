@@ -11,7 +11,7 @@ public:
         string s = "";
 
         vector<int> table(m+n, 0);
-        for(int i=0; i<m; ++i){
+        for(int i=0; i < m; ++i){
             for(int j=0; j<n; ++j){
                 int res = (charToInt(num1[i])*charToInt(num2[j]));
                 table[i+j] += res;

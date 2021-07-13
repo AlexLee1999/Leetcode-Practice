@@ -30,13 +30,13 @@ public:
             }
         }
         while(!heap.empty()){
-            ListNode* top_element = heap.top();
+            ListNode* topElement = heap.top();
             heap.pop();
-            if(top_element->next != nullptr){
-                heap.push(top_element->next);
+            if(topElement->next != nullptr){
+                heap.push(topElement->next);
             }
-            temp->next = top_element;
-            temp = top_element;
+            temp->next = topElement;
+            temp = topElement;
         }
         return head->next;
     }

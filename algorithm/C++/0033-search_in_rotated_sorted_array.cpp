@@ -6,7 +6,6 @@ public:
         int mid;
         while (left <= right){
             mid = (left + right) / 2;
-            cout<<left<<'-'<<mid<<'-'<<right<<' ';
             if(nums[mid] == target){
                 return mid;
             }
