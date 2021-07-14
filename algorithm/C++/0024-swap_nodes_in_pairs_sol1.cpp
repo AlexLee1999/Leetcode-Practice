@@ -17,7 +17,7 @@ public:
         ListNode* left = head;
         ListNode* right = head->next;
         ListNode* pre = nullptr;
-        while(1){
+        while(true){
             if(pre != nullptr){
                 pre->next = right;
             }
@@ -34,10 +34,7 @@ public:
             else{
                 break;
             }
-
         }
-
-
         return head;
     }
 };

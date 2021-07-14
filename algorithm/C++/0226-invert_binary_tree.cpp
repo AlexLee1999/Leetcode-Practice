@@ -12,7 +12,7 @@
 class Solution {
 public:
     void invert(TreeNode* node){
-        if(node == nullptr){
+        if (node == nullptr) {
             return;
         }
         swap(node->right, node->left);

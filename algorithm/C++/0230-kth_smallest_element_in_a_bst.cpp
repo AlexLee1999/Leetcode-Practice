@@ -14,16 +14,16 @@ public:
     int kthSmallest(TreeNode* root, int k) {
         stack<TreeNode*> s;
         TreeNode* tmp = root;
-        while(tmp != nullptr){
+        while (tmp != nullptr) {
             s.push(tmp);
             tmp = tmp->left;
         }
-        while(k>1){
+        while (k > 1) {
             tmp = s.top();
             s.pop();
-            if(tmp->right != nullptr){
+            if (tmp->right != nullptr) {
                 tmp = tmp->right;
-                while(tmp != nullptr){
+                while (tmp != nullptr) {
                     s.push(tmp);
                     tmp = tmp->left;
                 }

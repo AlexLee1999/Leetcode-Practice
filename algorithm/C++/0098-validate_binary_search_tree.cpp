@@ -15,7 +15,7 @@ public:
         if(node == nullptr){
             return true;
         }
-        if(((max!=nullptr)&&node->val>=max->val) || (min!=nullptr)&&(node->val<=min->val)){
+        if(((max != nullptr) && node->val >= max->val) || (min != nullptr) && (node->val <= min->val)){
             return false;
         }
         return valid(node->left, node, min)&&valid(node->right, max, node);

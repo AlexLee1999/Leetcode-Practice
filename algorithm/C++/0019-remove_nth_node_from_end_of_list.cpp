@@ -14,13 +14,13 @@ public:
         ListNode* left = head;
         ListNode* right = head;
 
-        for (int i=0; i<n; ++i){
+        for (int i = 0; i < n; ++i) {
             right = right->next;
         }
-        if(right == nullptr){
+        if (right == nullptr) {
             return head->next;
         }
-        while (right->next != nullptr){
+        while (right->next != nullptr) {
             left = left->next;
             right = right->next;
         }

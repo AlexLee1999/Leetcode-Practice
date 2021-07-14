@@ -11,18 +11,18 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
-        if(!l1&&!l2){
+        if (!l1 && !l2) {
             return nullptr;
         }
         ListNode* head = new ListNode();
         ListNode* pre = head;
-        while(l1 != nullptr || l2 != nullptr){
+        while (l1 != nullptr || l2 != nullptr) {
             ListNode* temp;
-            if(l1 == nullptr || (l2 != nullptr && (l1 -> val >= l2-> val))){
+            if (l1 == nullptr || (l2 != nullptr && (l1 -> val >= l2-> val))) {
                 temp = l2;
                 l2 = l2->next;
             }
-            else{
+            else {
                 temp = l1;
                 l1 = l1->next;
             }

@@ -17,8 +17,8 @@ public:
         }
         max_depth = max(max_depth, depth);
 
-        check_tree(node->left, depth+1, max_depth);
-        check_tree(node->right, depth+1, max_depth);
+        check_tree(node->left, depth + 1, max_depth);
+        check_tree(node->right, depth + 1, max_depth);
     }
     int maxDepth(TreeNode* root) {
         int depth = 1;

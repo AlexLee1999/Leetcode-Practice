@@ -19,19 +19,19 @@ public:
         que.push(root);
         int height = 0;
         TreeNode* tmp;
-        while(!que.empty()){
+        while (!que.empty()) {
             int n = que.size();
-            for (int i=0; i<n; ++i){
+            for (int i = 0; i < n; ++i) {
                 tmp = que.front();
-                if(tmp->left != nullptr){
+                if (tmp->left != nullptr) {
                     que.push(tmp->left);
                 }
-                if(tmp->right != nullptr){
+                if (tmp->right != nullptr) {
                     que.push(tmp->right);
                 }
                 que.pop();
             }
-            height ++;
+            height++;
         }
         return height;
     }

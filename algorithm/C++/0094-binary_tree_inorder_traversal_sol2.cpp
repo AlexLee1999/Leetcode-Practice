@@ -16,7 +16,7 @@ public:
         stack<TreeNode*> st;
         vector<int> res;
         while(temp != nullptr || !st.empty()){
-            while(temp!= nullptr){
+            while(temp != nullptr){
                 st.push(temp);
                 temp = temp->left;
             }

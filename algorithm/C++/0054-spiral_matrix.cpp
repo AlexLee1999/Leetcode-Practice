@@ -7,28 +7,28 @@ public:
         int x=-1;
         int y=0;
         vector<vector<bool>> table(n, vector<bool>(m, false));
-        while(true){
-            while(x<m-1&&!table[y][x+1]){
+        while (true) {
+            while (x < m-1 && !table[y][x+1]) {
                 x++;
                 res.push_back(matrix[y][x]);
                 table[y][x] = true;
             }
-            while(y<n-1&&!table[y+1][x]){
+            while (y < n-1 && !table[y+1][x]) {
                 y++;
                 res.push_back(matrix[y][x]);
                 table[y][x] = true;
             }
-            while(x>0&&!table[y][x-1]){
+            while (x > 0 && !table[y][x-1]) {
                 x--;
                 res.push_back(matrix[y][x]);
                 table[y][x] = true;
             }
-            while(y>0&&!table[y-1][x]){
+            while (y > 0 && !table[y-1][x]) {
                 y--;
                 res.push_back(matrix[y][x]);
                 table[y][x] = true;
             }
-            if(!(y>0&&!table[y-1][x])&&!(x>0&&!table[y][x-1])&&!(y<n-1&&!table[y+1][x])&&!(x<m-1&&!table[y][x+1])){
+            if (!(y > 0 && !table[y-1][x]) && !(x > 0 && !table[y][x-1]) && !(y < n-1 && !table[y+1][x]) && !(x < m-1 && !table[y][x+1])) {
                 break;
             }
         }

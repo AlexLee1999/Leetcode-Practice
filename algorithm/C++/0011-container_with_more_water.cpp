@@ -4,15 +4,15 @@ public:
         int max = 0;
         int i = 0;
         int j = height.size() - 1;
-        while (i < j){
+        while (i < j) {
             int h = min(height[i], height[j]);
-            if (h * (j-i) > max){
-                max = h * (j-i);
+            if (h * (j - i) > max) {
+                max = h * (j - i);
             }
-            while(i < j && height[j] <= h){
+            while (i < j && height[j] <= h) {
                 --j;
             }
-            while(i<j && height[i] <= h){
+            while (i < j && height[i] <= h) {
                 ++i;
             }
         }

@@ -12,7 +12,7 @@
 class Solution {
 public:
     void inorder(TreeNode* node, vector<int>& res){
-        if(node==nullptr){
+        if(node == nullptr){
             return;
         }
         inorder(node->left, res);
