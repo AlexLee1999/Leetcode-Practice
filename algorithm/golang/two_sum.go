@@ -8,8 +8,3 @@ func twoSum(nums []int, target int) []int {
 	}
     return []int{0, 0}
 }
-
-func main() {
-    lst := []int{2, 3, 4}
-    fmt.Println(twoSum(lst, 6))
-}
