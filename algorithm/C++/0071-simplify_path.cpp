@@ -13,7 +13,6 @@ public:
         while (right <= len) {
             if (right == len || path[right] == '/') {
                 s = path.substr(left + 1, right - left - 1);
-
                 if (s == "..") {
                     if (!st.empty()) {
                         st.pop();
@@ -33,7 +32,6 @@ public:
             return "/";
         }
         while (!st.empty()) {
-            cout <<st.top()<<' ';
             retStr = "/" + st.top() + retStr;
             st.pop();
         }
