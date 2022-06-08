@@ -1,29 +1,30 @@
 class Solution {
 public:
     void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
-        vector<int> ans;
-        int left = 0;
-        int right = 0;
-        while (left < m && right < n) {
-            if (nums1[left] <= nums2[right]) {
-                ans.push_back(nums1[left]);
-                left ++;
+        int num1_left = m - 1;
+        int num2_left = n - 1;
+        int space_ptr = nums1.size() - 1;
+        while (num1_left >= 0 && num2_left >= 0) {
+            if (nums1[num1_left] >= nums2[num2_left]) {
+                nums1[space_ptr] = nums1[num1_left];
+                num1_left --;
+            } else {
+                nums1[space_ptr] = nums2[num2_left];
+                num2_left --;
             }
-            else {
-                ans.push_back(nums2[right]);
-                right ++;
-            }
+            space_ptr --;
         }
-        while (left < m) {
-            ans.push_back(nums1[left]);
-            left ++;
+        while (num1_left >= 0) {
+            nums1[space_ptr] = nums1[num1_left];
+            num1_left --;
+            space_ptr --;
         }
-        while (right < n) {
-            ans.push_back(nums2[right]);
-            right ++;
-        }
-        for (int i=0; i<m+n; ++i) {
-            nums1[i] = ans[i];
+        while (num2_left >= 0) {
+            nums1[space_ptr] = nums2[num2_left];
+            num2_left --;
+            space_ptr --;
         }
     }
 };
+// Time : O(m + n)
+// Space : O(1)

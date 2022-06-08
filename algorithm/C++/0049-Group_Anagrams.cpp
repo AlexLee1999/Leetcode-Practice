@@ -14,3 +14,5 @@ public:
         return results;
     }
 };
+// Time : O(nklogk) k is the longest string, n is the size of strs
+// Space : O(nk)

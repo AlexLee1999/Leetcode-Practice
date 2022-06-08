@@ -20,3 +20,5 @@ public:
         return grid[0][0];
     }
 };
+// Time : O(mn)
+// Space : O(1)

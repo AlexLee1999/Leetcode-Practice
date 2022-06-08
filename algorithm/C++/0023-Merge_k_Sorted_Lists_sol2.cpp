@@ -42,3 +42,5 @@ public:
         return head->next;
     }
 };
+// Time : O(Nlogk) N is the total number of nodes, k is the size of lists
+// Space : O(k) At most k nodes in Heap

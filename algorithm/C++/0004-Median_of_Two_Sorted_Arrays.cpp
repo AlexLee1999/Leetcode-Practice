@@ -1,61 +1,36 @@
 class Solution {
 public:
     double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {
-        short m = nums1.size();
-        short n = nums2.size();
+        int m = nums1.size();
+        int n = nums2.size();
         if (m > n) {
-            return findMedianSortedArrays(nums2, nums1);
+            return findMedianSortedArrays(nums2, nums1); // assume nums1 is smaller
         }
+        
         int left = 0;
-        int right = m;
+        int right = m; //do binary search in nums1
+        // Find the cut in nums1, which can be found in 0~m
         while (left <= right) {
-            int partition_x = (left + right) / 2;
-            int partition_y = (m + n + 1) / 2 - partition_x;
-            int left_x;
-            int right_x;
-            int left_y;
-            int right_y;
-            if (partition_x == 0) {
-                left_x = INT_MIN;
-            }
-            else {
-                left_x = nums1[partition_x - 1];
-            }
-            if (partition_x == m) {
-                right_x = INT_MAX;
-            }
-            else {
-                right_x = nums1[partition_x];
-            }
-            if (partition_y == 0){
-                left_y = INT_MIN;
-            }
-            else {
-                left_y = nums2[partition_y - 1];
-            }
-            if (partition_y == n){
-                right_y = INT_MAX;
-            }
-            else {
-                right_y = nums2[partition_y];
-            }
-            if (left_y <= right_x && left_x <= right_y) {
-                if (((m + n) % 2) == 0) {
-                    int res = max(left_x, left_y) + min(right_x, right_y);
-                    return(res / 2.0);
+            int cut1 = left + (right - left) / 2;
+            int cut2 = (m + n + 1) / 2 - cut1;
+            int left1 = (cut1 == 0 ? INT_MIN : nums1[cut1 - 1]);
+            int left2 = (cut2 == 0 ? INT_MIN : nums2[cut2 - 1]);
+            int right1 = (cut1 == m ? INT_MAX : nums1[cut1]);
+            int right2 = (cut2 == n ? INT_MAX : nums2[cut2]);
+            if (left1 <= right2 && left2 <= right1) {
+                if (((m + n) & 1) == 0) {
+                    return (double)(max(left1, left2) + min(right1, right2)) / 2;
+                } else {
+                    return (double)max(left1, left2);
                 }
-                else{
-                    return (double)max(left_x, left_y);
-                }
-
-            }
-            if (left_x > right_y) {
-                right = partition_x - 1;
-            }
-            else {
-                left = partition_x + 1;
+            } else if (left1 > right2) {
+                right = cut1 - 1;
+            } else {
+                left = cut1 + 1;
             }
         }
         return -1;
     }
 };
+//Time : O(log(min(m, n)))
+//Space : O(1)

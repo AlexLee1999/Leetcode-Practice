@@ -10,3 +10,5 @@ public:
         return i == n;
     }
 };
+// Time : O(n)
+// Space : O(1)

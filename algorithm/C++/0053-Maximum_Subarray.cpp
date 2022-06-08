@@ -12,3 +12,5 @@ public:
         return max_num;
     }
 };
+// Time : O(n)
+// Space : O(n)

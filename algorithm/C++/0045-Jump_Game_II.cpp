@@ -19,3 +19,5 @@ public:
         return step;
     }
 };
+// Time : O(n)
+// Space : O(1)

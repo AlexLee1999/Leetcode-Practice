@@ -53,3 +53,6 @@ public:
         return lists[0];
     }
 };
+
+// Time : O(Nlogk) N is the total number of nodes, k is the size of lists
+// Space : O(1)

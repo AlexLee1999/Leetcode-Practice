@@ -10,3 +10,5 @@ public:
         return table[n-1];
     }
 };
+// Time : O(mn)
+// Space : O(n)

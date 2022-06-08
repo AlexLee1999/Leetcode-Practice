@@ -19,3 +19,5 @@ public:
         return max;
     }
 };
+// Time : O(n)
+// Space : O(1)

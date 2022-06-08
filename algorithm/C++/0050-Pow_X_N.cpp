@@ -19,3 +19,5 @@ public:
         return sign ? (1.0 / ans): ans;
     }
 };
+// Time : O(log(n))
+// Space : O(1)

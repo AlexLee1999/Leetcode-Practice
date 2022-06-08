@@ -32,3 +32,5 @@ public:
         return head->next;
     }
 };
+// Time : O(m + n)
+// Space : O(1)

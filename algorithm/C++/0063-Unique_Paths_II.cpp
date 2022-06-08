@@ -37,3 +37,5 @@ public:
         return table[n-1][m-1];
     }
 };
+// Time : O(mn)
+// Space : O(1)

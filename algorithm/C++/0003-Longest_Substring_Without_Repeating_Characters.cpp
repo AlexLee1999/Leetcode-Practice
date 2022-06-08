@@ -16,3 +16,5 @@ public:
         return maxNum;
     }
 };
+//Time : O(n)
+//Space : O(min(m, n)) for hash table, m = char set size, n = string size

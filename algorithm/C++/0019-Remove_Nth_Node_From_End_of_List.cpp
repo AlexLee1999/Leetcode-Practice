@@ -28,3 +28,5 @@ public:
         return head;
     }
 };
+// Time : O(L) L is the length of the linked list
+// Space : O(1)

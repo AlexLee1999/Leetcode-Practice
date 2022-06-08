@@ -13,3 +13,5 @@ public:
         return result;
     }
 };
+// Time : O(1) up to 15 times
+// Space : O(1)
