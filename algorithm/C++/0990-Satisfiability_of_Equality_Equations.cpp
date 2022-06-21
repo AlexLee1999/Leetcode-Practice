@@ -37,21 +37,20 @@ private:
 };
 class Solution {
 public:
-    int earliestAcq(vector<vector<int>>& logs, int n) {
-        DSU* mySet = new DSU(n);
-        int count = n;
-        sort(logs.begin(), logs.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0];
-        });
-        for (int i=0; i<logs.size(); ++i) {
-            if (mySet->join(logs[i][1], logs[i][2])) {
-                count--;
-            }
-            if (count == 1) {
-                return logs[i][0];
+    bool equationsPossible(vector<string>& equations) {
+        DSU* mySet = new DSU(26);
+        for (int i=0; i<equations.size(); ++i) {
+            if (equations[i][1] == '='){
+                mySet->join(equations[i][0]-'a', equations[i][3]-'a');
             }
         }
-        return -1;
-        
+        for (int i=0; i<equations.size(); ++i) {
+            if (equations[i][1] == '!'){
+                if (mySet->find(equations[i][0]-'a') == mySet->find(equations[i][3]-'a')) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 };

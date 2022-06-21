@@ -37,21 +37,18 @@ private:
 };
 class Solution {
 public:
-    int earliestAcq(vector<vector<int>>& logs, int n) {
+    bool validTree(int n, vector<vector<int>>& edges) {
+        if (edges.size() != n-1) {
+            return false;
+        }
         DSU* mySet = new DSU(n);
-        int count = n;
-        sort(logs.begin(), logs.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0];
-        });
-        for (int i=0; i<logs.size(); ++i) {
-            if (mySet->join(logs[i][1], logs[i][2])) {
-                count--;
-            }
-            if (count == 1) {
-                return logs[i][0];
+        for (int i=0; i<edges.size(); ++i) {
+            if (!mySet->join(edges[i][0], edges[i][1])) {
+                return false;
             }
         }
-        return -1;
-        
+        return true;
     }
 };
+// Time : O(Na(N))
+// Space : O(N)

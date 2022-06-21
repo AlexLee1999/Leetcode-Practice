@@ -1,13 +1,12 @@
 class DSU {
 public:
     DSU(int n) {
-        parent = vector<int>(n, 0);
-        rank = vector<int>(n, 0);
+        parent = vector<int>(n + 1, 0);
+        rank = vector<int>(n + 1, 0);
         for (int i=0; i<parent.size(); ++i) {
             parent[i] = i;
         }
     }
-    
     int find(int x) {
         if (x != parent[x]) {
             parent[x] = find(parent[x]);
@@ -22,11 +21,11 @@ public:
         } else {
             if (rank[rootx] > rank[rooty]) {
                 parent[rooty] = rootx;
-            } else if (rank[rootx] < rank[rooty]) {
+            } else if (rank[y] > rank[x]) {
                 parent[rootx] = rooty;
             } else {
                 parent[rootx] = rooty;
-                rank[rootx] ++;
+                rank[rooty] ++; 
             }
         }
         return true;
@@ -37,21 +36,16 @@ private:
 };
 class Solution {
 public:
-    int earliestAcq(vector<vector<int>>& logs, int n) {
+    vector<int> findRedundantConnection(vector<vector<int>>& edges) {
+        int n = edges.size();
         DSU* mySet = new DSU(n);
-        int count = n;
-        sort(logs.begin(), logs.end(), [](vector<int>& a, vector<int>& b) {
-            return a[0] < b[0];
-        });
-        for (int i=0; i<logs.size(); ++i) {
-            if (mySet->join(logs[i][1], logs[i][2])) {
-                count--;
-            }
-            if (count == 1) {
-                return logs[i][0];
-            }
+        for (int i=0; i<n; ++i) {
+            if (!mySet->join(edges[i][0], edges[i][1])) {
+                return edges[i];
+            } 
         }
-        return -1;
-        
+        return vector<int>{-1, -1};
     }
 };
+// Time : O(Na(N))
+// Space : O(N)
