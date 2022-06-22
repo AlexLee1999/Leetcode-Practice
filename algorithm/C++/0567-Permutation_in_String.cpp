@@ -20,3 +20,5 @@ public:
         return false;
     }
 };
+// Time : O(l1 + l2)
+// Space : O(1)
