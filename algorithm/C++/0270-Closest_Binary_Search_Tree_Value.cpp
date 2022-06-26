@@ -14,7 +14,7 @@ public:
     int closestValue(TreeNode* root, double target) {
         double closest = root->val;
         while (root != nullptr) {
-            if (fabs(root->val - target) < fabs(closest - target)) {
+            if (fabs(root->val - target) < fabs(closest - target)) { // try to approach the nearest node
                 closest = root->val;
             }
             if (root->val < target) {
@@ -28,3 +28,5 @@ public:
         return closest;
     }
 };
+// Time : O(logn)
+// Space : O(1)

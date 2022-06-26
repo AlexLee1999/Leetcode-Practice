@@ -22,3 +22,5 @@ public:
         return pre;
     }
 };
+// Time : O(n)
+// Space : O(1)
