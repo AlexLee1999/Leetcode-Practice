@@ -14,3 +14,5 @@ public:
         return seq.size() >= 3;
     }
 };
+// Time : O(nlogn)
+// Space : O(n)
