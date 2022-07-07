@@ -28,3 +28,5 @@ public:
         return time <= hour;
     }
 };
+// Time : O(nlogW) W is the range
+// Space : O(n)

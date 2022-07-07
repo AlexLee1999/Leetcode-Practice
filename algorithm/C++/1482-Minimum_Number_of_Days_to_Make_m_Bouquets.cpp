@@ -15,6 +15,7 @@ public:
             }
         }
         return left;
+        
     }
     bool isPossible(vector<int>& bloomDay, int m, int k, int day) {
         int bouquet_num = 0;
@@ -25,6 +26,9 @@ public:
                 if (length >= k) {
                     bouquet_num ++;
                     length = 0;
+                    if (bouquet_num >= m) {
+                        return true;
+                    }
                 }
             } else {
                 length = 0;
@@ -33,3 +37,5 @@ public:
         return bouquet_num >= m;
     }
 };
+// Time : O(nlogW) W is the range
+// Space : O(1)
