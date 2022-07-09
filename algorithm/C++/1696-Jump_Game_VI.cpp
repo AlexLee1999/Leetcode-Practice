@@ -7,11 +7,12 @@ public:
         table[0] = nums[0];
         myDeque.push_back(0);
         for (int i=1; i<n; ++i) {
-            while (!myDeque.empty() && myDeque.front() < i-k) {
+            while (!myDeque.empty() && myDeque.front() < i - k) {
                 myDeque.pop_front();
             }
+            // pop the front element that is farther than k
             table[i] = nums[i] + table[myDeque.front()];
-            while (!myDeque.empty() && table[myDeque.back()] < table[i]) {
+            while (!myDeque.empty() && table[myDeque.back()] <= table[i]) {
                 myDeque.pop_back();
             }
             myDeque.push_back(i);

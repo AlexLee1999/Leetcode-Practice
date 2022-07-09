@@ -6,7 +6,7 @@ public:
         vector<int> ans;
         int max_num = INT_MIN;
         for (int i=0; i<k; ++i) {
-            while (!myDeque.empty() && nums[myDeque.back()] < nums[i]) {
+            while (!myDeque.empty() && nums[myDeque.back()] <= nums[i]) {
                 myDeque.pop_back();
             }
             max_num = max(max_num, nums[i]);
@@ -17,13 +17,11 @@ public:
             while (!myDeque.empty() && myDeque.front() <= i - k) {
                 myDeque.pop_front();
             }
-            while (!myDeque.empty() && nums[myDeque.back()] < nums[i]) {
+            while (!myDeque.empty() && nums[myDeque.back()] <= nums[i]) {
                 myDeque.pop_back();
             }
-            
             myDeque.push_back(i);
             ans.push_back(nums[myDeque.front()]); 
-            
         }
         return ans;
     }
