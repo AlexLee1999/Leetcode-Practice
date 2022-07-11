@@ -2,17 +2,15 @@ class Solution {
 public:
     vector<string> tokenizeString(string s) {
         vector<string> results;
-        string word = "";
-        for (int i=0; i<s.size(); ++i) {
-            if (s[i] == ' ') {
-                results.push_back(word);
-                word = "";
-            } else {
-                word += s[i];
+        int ptr = 0;
+        for (int i=0; i<=s.size(); ++i) {
+            if (i == s.size()) {
+                results.push_back(s.substr(ptr, i-ptr));
             }
-        }
-        if (word != "") {
-            results.push_back(word);
+            if (s[i] == ' ') {
+                results.push_back(s.substr(ptr, i-ptr));
+                ptr = i + 1;
+            }
         }
         
         return results;
@@ -37,3 +35,5 @@ public:
         return true;
     }
 };
+// Time : O(n)
+// Space : O(n)
