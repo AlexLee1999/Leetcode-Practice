@@ -15,11 +15,12 @@ public:
                         int front = myQueue.front();
                         myQueue.pop();
                         for (int i=0; i<graph[front].size(); ++i) {
-                            if (level[graph[front][i]] == -1) {
-                                level[graph[front][i]] = step + 1;
-                                myQueue.push(graph[front][i]);
+                            int neighbor = graph[front][i];
+                            if (level[neighbor] == -1) {
+                                level[neighbor] = step + 1;
+                                myQueue.push(neighbor);
                             } else {
-                                if ((level[graph[front][i]] & 1) == (level[front] & 1)) {
+                                if ((level[neighbor] & 1) == (level[front] & 1)) {
                                     return false;
                                 } 
                             }
@@ -32,3 +33,5 @@ public:
         return true;
     }
 };
+// Time : O(N)
+// Space : O(N)
