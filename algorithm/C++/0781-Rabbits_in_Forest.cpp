@@ -12,3 +12,6 @@ public:
         return count;
     }
 };
+// Time : O(n)
+// Space : O(n)
+/* Idea : if there are n + 1 rabbits say that there are n rabbits, the minimum rabbit is n + 1 */

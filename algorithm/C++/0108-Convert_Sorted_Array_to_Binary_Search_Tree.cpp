@@ -20,10 +20,10 @@ public:
         }
         int mid = (right - left) / 2 + left;
         TreeNode* node = new TreeNode(nums[mid]);
-        TreeNode* leftnode = recursive(left, mid-1, nums);
-        TreeNode* rightnode = recursive(mid + 1, right, nums);
-        node->left = leftnode;
-        node->right = rightnode;
+        node->left = recursive(left, mid-1, nums);
+        node->right = recursive(mid + 1, right, nums);
         return node;
     }
 };
+// Time : O(N)
+// Space : O(logN)
