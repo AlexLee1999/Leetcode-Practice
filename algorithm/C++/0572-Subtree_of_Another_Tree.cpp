@@ -33,3 +33,5 @@ public:
         return check(root->left, subRoot->left) && check(root->right, subRoot->right);
     }
 };
+// Time : O(max(n, m))
+// Space : O(max(n, m))

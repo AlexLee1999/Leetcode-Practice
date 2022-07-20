@@ -11,8 +11,7 @@ public:
             return;
         }
         if (target == 0) {
-            vector<int> copy_combinations (combinations.begin(), combinations.end());
-            results.push_back(copy_combinations);
+            results.push_back(combinations);
             return;
         }
         for (int i=start; i<candidates.size(); ++i) {
