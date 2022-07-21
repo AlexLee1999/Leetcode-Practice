@@ -8,6 +8,7 @@ public:
                 return a[0] < b[0];
             }
         });
+        int max_len = 1;
         vector<int> table(pairs.size(), 1);
         for (int i=1; i<pairs.size(); ++i) {
             for (int j=0; j<i; ++j) {
@@ -15,9 +16,6 @@ public:
                     table[i] = max(table[i], table[j] + 1);
                 }
             }
-        }
-        int max_len = 0;
-        for (int i=0; i<table.size(); ++i) {
             max_len = max(max_len, table[i]);
         }
         return max_len;

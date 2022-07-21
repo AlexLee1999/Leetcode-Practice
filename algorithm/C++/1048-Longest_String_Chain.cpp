@@ -10,9 +10,9 @@ public:
         for (int i=0; i<n; ++i) {
             myMap[words[i]] = 1;
             for (int j = 0; j<words[i].size(); ++j) {
-                string predecessor = words[i].substr(0, j) + words[i].substr(j + 1, words[i].size() - j - 1);
+                string predecessor = words[i].substr(0, j) + words[i].substr(j + 1);
                 if (myMap.find(predecessor) != myMap.end()) {
-                    myMap[words[i]] = myMap[predecessor] + 1;
+                    myMap[words[i]] = max(myMap[words[i]], myMap[predecessor] + 1);
                     max_len = max(max_len, myMap[words[i]]);
                 }
             }
