@@ -2,7 +2,8 @@ class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
         int sum = 0;
-        for (int i=0; i<nums.size(); ++i) {
+        int n = nums.size();
+        for (int i=0; i<n; ++i) {
             sum += nums[i];
         }
         if (target > 0 && target > sum) {
@@ -11,10 +12,10 @@ public:
         if (target < 0 && target < -1 * sum) {
             return 0;
         }
-        vector<vector<int>> table(nums.size(), vector<int>(2*sum + 1, 0));
+        vector<vector<int>> table(n, vector<int>(2*sum + 1, 0));
         table[0][sum + nums[0]] ++;
         table[0][sum - nums[0]] ++;
-        for (int i=1; i<nums.size(); ++i) {
+        for (int i=1; i<n; ++i) {
             for (int j = -1 * sum; j <= sum; ++j) {
                 if (table[i-1][j + sum] > 0) {
                     table[i][j + sum + nums[i]] += table[i-1][j + sum];
@@ -22,7 +23,7 @@ public:
                 }
             }
         }
-        return table[nums.size() - 1][target + sum];
+        return table[n - 1][target + sum];
     }
 };
 // Time : O(tn)

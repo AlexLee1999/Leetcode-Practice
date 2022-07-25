@@ -14,6 +14,7 @@ public:
                 }
             }
         }
+        // Find the LCS between s and reverse(s)
         return table[n][n];
     }
 };
