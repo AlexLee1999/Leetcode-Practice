@@ -10,14 +10,17 @@ public:
             p_count[p[i]-'a'] ++;
         }
         for (int i=0; i<s_size; ++i) {
+            
             if (i >= p_size) {
                 s_count[s[i-p_size]-'a'] --;
             }
             s_count[s[i]-'a'] ++;
             if (p_count == s_count) {
-                result.push_back(i-p_size + 1);
+                result.push_back(i - p_size + 1);
             }
         }
         return result;
     }
 };
+// Time : O(m)
+// Space : O(k)

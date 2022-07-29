@@ -19,32 +19,38 @@ public:
             fast = fast->next->next;
             slow = slow->next;
         }
-        
-        // Cut the first half
         prev_slow->next = nullptr;
+        
+        
         // Reverse the second half of the linked list
         ListNode* current_ptr = slow;
         ListNode* prev_ptr = nullptr;
-        ListNode* temp = nullptr;
         while (current_ptr != nullptr) {
-            temp = current_ptr->next;
+            ListNode* temp = current_ptr->next;
             current_ptr->next = prev_ptr;
             prev_ptr = current_ptr;
             current_ptr = temp;
         }
-        while (prev_ptr != nullptr && head !=nullptr) {
-            if (prev_ptr->val != head->val) {
+        
+        // Compare the first half and the second half
+        ListNode* first_half_ptr = head;
+        ListNode* second_half_ptr = prev_ptr;
+        
+        while (first_half_ptr != nullptr && second_half_ptr !=nullptr) {
+            if (first_half_ptr->val != second_half_ptr->val) {
                 return false;
             }
-            prev_ptr = prev_ptr->next;
-            head = head->next;
+            first_half_ptr = first_half_ptr->next;
+            second_half_ptr = second_half_ptr->next;
         }
-        // [1, 0, 1]
-        // prev_ptr = [1, 0]
+        // Consider the case : [1, 0, 1]
+        // second_half_ptr = [1, 0]
         // head = [1]
-        // if prev_ptr != nullptr, the num of the list is odd
-        // However, the fast-slow ptr ensure that there is only one node left in prev_ptr
+        // if second_half_ptr != nullptr, the num of the list is odd
+        // However, the fast-slow ptr ensure that there is only one node left in second_half_ptr
         // Therefore return true
         return true;
     }
 };
+// Time : O(n)
+// Space : O(1)
