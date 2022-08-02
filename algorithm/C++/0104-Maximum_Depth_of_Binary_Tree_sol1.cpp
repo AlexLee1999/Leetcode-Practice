@@ -11,19 +11,15 @@
  */
 class Solution {
 public:
-    void checkTree(TreeNode* node, int depth, int& max_depth){
-        if(node == nullptr){
-            return;
-        }
-        max_depth = max(max_depth, depth);
-
-        check_tree(node->left, depth + 1, max_depth);
-        check_tree(node->right, depth + 1, max_depth);
-    }
     int maxDepth(TreeNode* root) {
-        int depth = 1;
-        int max_depth = 0;
-        checkTree(root, depth, max_depth);
-        return max_depth;
+        return check_tree(root);
+    }
+    int check_tree(TreeNode* node){
+        if (node == nullptr){
+            return 0;
+        }
+        return max(check_tree(node->left), check_tree(node->right)) + 1;
     }
 };
+// Time : O(n)
+// Space : O(logn)

@@ -2,23 +2,25 @@ class Solution {
 public:
     vector<int> findPermutation(string s) {
         stack<int> myStack;
-        vector<int> ans(s.size() + 1, 0);
-        int ans_ptr = 0;
-        for (int i=0; i<s.size() + 1; ++i) {
-            myStack.push(i+1);
-            if (s[i] == 'I') {
+        vector<int> ans(s.size() + 1);
+        int ptr = 0;
+        for (int i=1; i<=s.size() + 1; ++i) {
+            myStack.push(i);
+            if (i - 1 < s.size() && s[i - 1] == 'I') {
                 while (!myStack.empty()) {
-                    ans[ans_ptr] = myStack.top();
+                    ans[ptr] = myStack.top();
                     myStack.pop();
-                    ans_ptr ++;
+                    ptr ++;
                 }
             }
         }
         while (!myStack.empty()) {
-            ans[ans_ptr] = myStack.top();
+            ans[ptr] = myStack.top();
             myStack.pop();
-            ans_ptr ++;
+            ptr ++;
         }
         return ans;
     }
 };
+// Time : O(n)
+// Space : O(n)
