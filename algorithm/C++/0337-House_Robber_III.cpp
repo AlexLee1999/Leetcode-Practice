@@ -11,11 +11,11 @@
  */
 class Solution {
 public:
-    unordered_map<TreeNode*, int> myMap;
     int rob(TreeNode* root) {
-        return recursive(root);
+        unordered_map<TreeNode*, int> myMap;
+        return recursive(root, myMap);
     }
-    int recursive(TreeNode* root){
+    int recursive(TreeNode* root, unordered_map<TreeNode*, int>& myMap){
         if (root == nullptr) {
             return 0;
         }
@@ -23,17 +23,19 @@ public:
             return myMap[root];
         }
         int include = 0;
-        int exclude = recursive(root->right) + recursive(root->left);
+        int exclude = recursive(root->right, myMap) + recursive(root->left, myMap);
         if (root->left) {
-            include += recursive(root->left->left);
-            include += recursive(root->left->right);
+            include += recursive(root->left->left, myMap);
+            include += recursive(root->left->right, myMap);
         }
         if (root->right) {
-            include += recursive(root->right->left);
-            include += recursive(root->right->right);
+            include += recursive(root->right->left, myMap);
+            include += recursive(root->right->right, myMap);
         }
         include += root->val;
         myMap[root] = max(include, exclude);
         return max(include, exclude);
     }
 };
+// Time : O(n)
+// Space : O(H)
