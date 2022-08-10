@@ -4,7 +4,7 @@ public:
         bool operator()(const pair<int, int>& a, const pair<int, int>& b){
             return a.second > b.second;
         }
-};
+    };
     vector<int> topKFrequent(vector<int>& nums, int k) {
         unordered_map<int, int> myMap;
         for (int i=0; i<nums.size(); ++i) {
@@ -19,10 +19,11 @@ public:
         }
         vector<int> ans;
         for (int i=0; i<k; ++i) {
-            
             ans.push_back(myHeap.top().first);
             myHeap.pop();
         }
         return ans;
     }
 };
+// Time : O(nlogn)
+// Space : O(n)
