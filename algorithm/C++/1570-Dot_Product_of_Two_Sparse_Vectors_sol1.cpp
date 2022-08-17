@@ -1,9 +1,10 @@
 class SparseVector {
 public:
+    
     SparseVector(vector<int> &nums) {
         for (int i=0; i<nums.size(); ++i) {
             if (nums[i] != 0) {
-                _myMap[i] = nums[i];
+                myMap[i] = nums[i];
             }
         }
     }
@@ -11,16 +12,17 @@ public:
     // Return the dotProduct of two sparse vectors
     int dotProduct(SparseVector& vec) {
         int result = 0;
-        for (auto it = _myMap.begin(); it != _myMap.end(); ++it) {
-            if (vec._myMap.find(it->first) != vec._myMap.end()) {
-                result += (it->second * vec._myMap[it->first]);
+        for (auto it = myMap.begin(); it != myMap.end(); ++it) {
+            if (vec.myMap.find(it->first) != vec.myMap.end()) {
+                result += (it->second * vec.myMap[it->first]);
             }
         }
         return result;
     }
 private:
-    unordered_map<int, int> _myMap;
+    unordered_map<int, int> myMap;
 };
+// The hashing solution is inefficient while in large vector (resize & rehash)
 
 // Your SparseVector object will be instantiated and called as such:
 // SparseVector v1(nums1);
