@@ -2,15 +2,19 @@ class Solution {
 public:
     int minCost(vector<vector<int>>& costs) {
         int n = costs.size();
-        vector<vector<int>> table(n + 1, vector<int>(3, 0));
-        for (int i=0; i<costs.size(); ++i) {
-            table[i + 1][0] = costs[i][0] + min(table[i][1], table[i][2]);
-            table[i + 1][1] = costs[i][1] + min(table[i][0], table[i][2]);
-            table[i + 1][2] = costs[i][2] + min(table[i][0], table[i][1]);
+        int cost_0 = 0;
+        int cost_1 = 0;
+        int cost_2 = 0;
+        for (int i=0; i<n; ++i) {
+            int cost_0_tmp = cost_0;
+            int cost_1_tmp = cost_1;
+            int cost_2_tmp = cost_2;
+            cost_0 = min(cost_1_tmp, cost_2_tmp) + costs[i][0];
+            cost_1 = min(cost_0_tmp, cost_2_tmp) + costs[i][1];
+            cost_2 = min(cost_1_tmp, cost_0_tmp) + costs[i][2];
         }
-        int min_cost = min(table[n][0], table[n][1]);
-        return min(min_cost, table[n][2]);
+        return min(cost_0, min(cost_1, cost_2));
     }
 };
 // Time : O(n)
-// Space : O(n)
+// Space : O(1)

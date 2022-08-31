@@ -2,35 +2,34 @@ class Solution {
 public:
     bool canPartitionKSubsets(vector<int>& nums, int k) {
         int sum = 0;
-        int n = nums.size();
-        // sort(nums.begin(), nums.end());
-        for (int i=0; i<n; ++i) {
+        for (int i=0; i<nums.size(); ++i) {
             sum += nums[i];
         }
-        if (sum % k != 0 || n < k) {
+        if (sum % k != 0) {
             return false;
         }
-        vector<bool> visited (n, false);
-        return backtrack(nums, k, sum/k, visited, 0, 0, 0);
-        
+        int target = sum / k;
+        sort(nums.begin(), nums.end(), greater<int>());
+        return backtrack(nums, k, target, 0, 0, 0, 0);
     }
-    bool backtrack(vector<int>& nums, int k, int target, vector<bool>& visited, int count, int current, int index) {
-        if (count == k-1) {
-            return true; //return true if k-1 has grouped
+    bool backtrack(vector<int>& nums, int k, int target, int visited, int cur, int count, int index) {
+        if (count == k - 1) {
+            return true;
         }
-        if (current > target) {
-            return false; 
+        if (cur == target) {
+            return backtrack(nums, k, target, visited, 0, count + 1, 0);
         }
-        if (current == target) {
-            return backtrack(nums, k, target, visited, count + 1, 0, 0); // find the next subgroup
+        if (cur > target) {
+            return false;
         }
-        for (int i = index; i<nums.size(); ++i) {
-            if (!visited[i]) {
-                visited[i] = true;
-                if (backtrack(nums, k, target, visited, count, current + nums[i], i + 1)) {
-                    return true; //if use nums[i] 
+        for (int i=index; i<nums.size(); ++i) {
+            if (!((visited >> i) & 1)) {
+                int tmp = visited;
+                visited = (visited | (1 << i));
+                if (backtrack(nums, k, target, visited, cur + nums[i], count, i + 1)) {
+                    return true;
                 }
-                visited[i] = false;
+                visited = tmp;
             }
         }
         return false;
