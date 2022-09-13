@@ -6,17 +6,21 @@ public:
             myHeap.push({nums1[i] + nums2[0], {i, 0}});
         }
         vector<vector<int>> ans;
-        for (int i=0; i<k; ++i) {
-            if (myHeap.empty()) {
+        while (!myHeap.empty()) {
+            pair<int, pair<int, int>> front = myHeap.top();
+            myHeap.pop();
+            int idx1 = front.second.first;
+            int idx2 = front.second.second;
+            ans.push_back({nums1[idx1], nums2[idx2]});
+            if (ans.size() == k) {
                 return ans;
             }
-            pair<int, pair<int, int>> tmp = myHeap.top();
-            ans.push_back({nums1[tmp.second.first], nums2[tmp.second.second]});
-            myHeap.pop();
-            if (tmp.second.second < nums2.size()-1) {
-                myHeap.push({nums1[tmp.second.first] + nums2[tmp.second.second + 1], {tmp.second.first, tmp.second.second + 1}});
+            if (idx2 + 1 < nums2.size()) {
+                myHeap.push({nums1[idx1] + nums2[idx2 + 1], {idx1, idx2 + 1}});
             }
-        }
+        } 
         return ans;
     }
 };
+// Time : O(min(k, m + n)logm)
+// Space : O(m)

@@ -11,21 +11,19 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode* left = head;
-        ListNode* right = head;
+        ListNode* dummy = new ListNode(0, head);
+        ListNode* left = dummy;
+        ListNode* right = dummy;
 
-        for (int i = 0; i < n; ++i) {
+        for (int i=1; i<=n + 1; ++i){
             right = right->next;
         }
-        if (right == nullptr) {
-            return head->next;
-        }
-        while (right->next != nullptr) {
+        while (right != nullptr){
             left = left->next;
             right = right->next;
         }
         left->next = left->next->next;
-        return head;
+        return dummy->next;
     }
 };
 // Time : O(L) L is the length of the linked list
