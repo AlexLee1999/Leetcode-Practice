@@ -12,25 +12,23 @@ public:
 class Solution {
 public:
     Node* inorderSuccessor(Node* node) {
-        if (node->right != nullptr) {
-            return minNode(node->right);
-        }
-        if (node->parent == nullptr) {
-            return nullptr;
-        }
-        if (node->parent->left == node) {
+        if (node-> right != nullptr) {
+            Node* ptr = node;
+            ptr = ptr->right;
+            while (ptr->left != nullptr) {
+                ptr = ptr->left;
+            }
+            return ptr;
+        } else if (node->parent != nullptr && node == node->parent->left){
             return node->parent;
+        } else if (node->parent != nullptr && node == node->parent->right) {
+            Node * ptr = node;
+            while (ptr->parent != nullptr && ptr == ptr->parent->right) {
+                ptr = ptr->parent;
+            }
+            return ptr->parent;
         }
-        while (node->parent != nullptr && node->parent->right == node) {
-            node = node->parent;
-        }
-        return node->parent;
-    }
-    Node* minNode(Node* node) {
-        while (node->left != nullptr) {
-            node = node->left;
-        }
-        return node;
+        return nullptr;
     }
 };
 // Time : O(H)
