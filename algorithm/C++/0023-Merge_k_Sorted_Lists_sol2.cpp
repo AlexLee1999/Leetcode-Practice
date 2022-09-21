@@ -12,35 +12,35 @@ class Solution {
 public:
     struct compare
     {
-        bool operator()(ListNode* &a,ListNode* &b)
-        {
+        bool operator()(ListNode* &a,ListNode* &b) {
             return a->val>b->val;
         }
     };
 
     ListNode* mergeKLists(vector<ListNode*>& lists) {
-        if (lists.size() == 0) {
+        if (lists.empty()) {
             return nullptr;
         }
-        ListNode* head = new ListNode();
-        ListNode* temp = head;
-        priority_queue<ListNode*, vector<ListNode*>, compare> heap;
-        for (int i = 0; i < lists.size(); ++i) {
-            if (lists[i] != nullptr) {
-                heap.push(lists[i]);
+        ListNode* dummy = new ListNode();
+        ListNode* ptr = dummy;
+        priority_queue<ListNode*, vector<ListNode*>, compare> myHeap;
+        for (int i=0; i < lists.size(); ++i){
+            if(lists[i] != nullptr){
+                myHeap.push(lists[i]);
             }
         }
-        while (!heap.empty()) {
-            ListNode* topElement = heap.top();
-            heap.pop();
-            if (topElement->next != nullptr) {
-                heap.push(topElement->next);
+        
+        while (!myHeap.empty()) {
+            ListNode* top_element = myHeap.top();
+            myHeap.pop();
+            if (top_element->next != nullptr) {
+                myHeap.push(top_element->next);
             }
-            temp->next = topElement;
-            temp = topElement;
+            ptr->next = top_element;
+            ptr = ptr->next;
         }
-        return head->next;
+        return dummy->next;
     }
-};
+};691. Stickers to Spell Word
 // Time : O(Nlogk) N is the total number of nodes, k is the size of lists
 // Space : O(k) At most k nodes in Heap
