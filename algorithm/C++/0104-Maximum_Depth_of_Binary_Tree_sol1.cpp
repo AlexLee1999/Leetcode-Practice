@@ -22,4 +22,4 @@ public:
     }
 };
 // Time : O(n)
-// Space : O(logn)
+// Space : O(H)

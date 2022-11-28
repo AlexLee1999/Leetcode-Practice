@@ -16,3 +16,5 @@ public:
         return a;
     }
 };
+// Time : O(min(log(a), log(b)))
+// Space : O(1)

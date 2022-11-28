@@ -10,3 +10,5 @@ public:
         return ans^n;
     }
 };
+// Time : O(n)
+// Space : O(n)

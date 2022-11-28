@@ -33,3 +33,5 @@ public:
         return s.top()->val;
     }
 };
+// Time : O(n)
+// Space : O(n)
