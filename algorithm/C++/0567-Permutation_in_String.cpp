@@ -1,23 +1,35 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        int s1_size = s1.size();
-        int s2_size = s2.size();
-        vector<int> s1_count(26, 0);
-        vector<int> s2_count(26, 0);
-        for (int i=0; i<s1_size; ++i) {
-            s1_count[s1[i] - 'a'] ++;
+        vector<int> count(26, 0);
+        int len = s1.size();
+        int n = s2.size();
+        if (len > n) {
+            return false;
         }
-        for (int i=0; i<s2_size; ++i) {
-            s2_count[s2[i] - 'a'] ++;
-            if (i >= s1_size) {
-                s2_count[s2[i-s1_size] - 'a'] --;
-            }
-            if (s1_count == s2_count) {
+        for (int i=0; i<len; ++i) {
+            count[s1[i] - 'a'] ++;
+            count[s2[i] - 'a'] --;
+        }
+        if (isAllZero(count)) {
+            return true;
+        }
+        for (int i=len; i<n; ++i) {
+            count[s2[i] - 'a'] --;
+            count[s2[i - len] - 'a'] ++;
+            if (isAllZero(count)) {
                 return true;
             }
         }
         return false;
+    }
+    bool isAllZero(vector<int>& arr) {
+        for (int i=0; i<arr.size(); ++i) {
+            if (arr[i] != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 };
 // Time : O(l1 + l2)
